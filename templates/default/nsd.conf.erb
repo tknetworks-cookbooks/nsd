@@ -1,0 +1,15 @@
+server:
+        hide-version: yes
+        database: <%= node['nsd']['db'] %>
+<% node['nsd']['zones'].each do |name, zone| -%>
+
+zone:
+        name: <%= name %>
+        <% zone['allow-notify'].each do |a| -%>
+        allow-notify: <%= a %> NOKEY
+        <% end =%>
+        <% zone['request-xfr'].each do |r| -%>
+        request-xfr: <%= r %> NOKEY
+        <% end =%>
+        zonefile: "secondary/zone_<%= name %>"
+<% end -%>
