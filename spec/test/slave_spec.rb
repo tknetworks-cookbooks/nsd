@@ -19,7 +19,7 @@ describe 'nsd_test::slave' do
   include_context 'openbsd'
 
   let (:chef_run) {
-    ChefSpec::Runner.new(log_level: :debug, step_into: %w{nsd_zone}) do |node|
+    ChefSpec::Runner.new(step_into: %w{nsd_zone}) do |node|
       set_node(node)
     end
   }
